@@ -6,4 +6,4 @@ Sovelluksessa tulee olemaan korkeintaan neljä varsinaista tietokantataulua. Alu
 
 Tarkoituksena olisi luoda käyttäjälle eräänlainen reseptimuistio: käyttäjä voi sekä hakea että lisätä reseptejä sekä ainesosia keittokirjaan. Luokka resepti sisältää ainesosien lisäksi valmistusohjeet. Ainesosaan kuuluu sekä itse ruokalajikkeen nimi että mahdollinen merkkisuositus. ReseptinAineisosa -taulu puolestaan sisältää viitteen reseptiin sekä ainesosaan. 
 
-
+[linkki herokuun](https://tsoha-keittokirja.herokuapp.com/ )
