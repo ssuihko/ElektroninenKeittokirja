@@ -1,0 +1,16 @@
+RESEPTI
+(pk) id INTEGER
+String nimi
+String ohje 
+
+RESEPTINAINESOSA
+(fk) resepti: Resepti
+(fk) aineosa: Aineosa
+
+AINESOSA
+(pk) id INTEGER
+String nimi
+String suositus
+
+[RESEPTI] 1--* [RESEPTINAINESOSA]
+[AINEISOSA] 1--* [RESEPTINAINESOSA]

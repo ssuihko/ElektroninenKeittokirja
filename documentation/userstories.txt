@@ -1,0 +1,4 @@
+Elektronisen keittokirjan käyttäjänä voin lisätä omia reseptejäni sovelluksen kautta tietokantaan,
+josta löydän ne helposti myöhemmin. Voin myös lisätä tietokantaan uusia ainesosia, ja pitää kirjaa niistä
+tuotemerkeistä, joista pidän.  
+Voin myös löytää kaikki lisäämäni reseptit listattuna. 
