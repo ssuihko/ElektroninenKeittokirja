@@ -2,7 +2,41 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('recipe_create') }}">
-  <input type="text" name="name"/>
-  <input type="submit" value="Add a new recipe"/>
+  <table>
+    <tr>
+      <td>
+        {{ form.name.label }}
+      </td>
+      <td>
+        {{ form.name }}
+      </td>
+      <td>
+        <u1>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </u1>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.method.label }}
+      </td>
+      <td>
+        {{ form.method }}
+      </td>
+      <td>
+        <u1>
+          {% for error in form.method.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </u1>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <input type="submit" value="Add a new recipe"/>
+      </td>
+    </tr>
+  </table>
 </form>
 {% endblock %}

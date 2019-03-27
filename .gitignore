@@ -3,3 +3,4 @@ __pycache__
 tasks.db
 recipe.db
 *.py[cod]
+recipes.db

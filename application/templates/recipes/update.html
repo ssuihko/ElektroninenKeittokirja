@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('recipe_update') }}">
+  <table>
+    <tr>
+      <td>
+        {{ form.name.label }}
+      </td>
+      <td>
+        {{ form.name }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.method.label }}
+      </td>
+      <td>
+        {{ form.method }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Update recipe"/>
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

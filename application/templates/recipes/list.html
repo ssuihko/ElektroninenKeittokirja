@@ -4,10 +4,12 @@
   <table>
     <tr>
       <th>Recipe</th>
+      <th>Method</th>
     </tr>
     {% for recipe in recipes %}
     <tr>
       <td>{{ recipe.name }}</td>
+      <td>{{ recipe.method }}</td>
     </tr>
     {% endfor %}
   </table>
