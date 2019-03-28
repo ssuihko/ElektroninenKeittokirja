@@ -12,6 +12,6 @@ Tarkoituksena olisi luoda käyttäjälle eräänlainen reseptimuistio: käyttäj
 
 [userstories](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/userstories.txt)
 
-Alustava kirjautuminen:
-username: hello
+Alustava kirjautuminen: 
+username: hello, 
 password: world
