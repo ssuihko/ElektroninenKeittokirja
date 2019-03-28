@@ -10,7 +10,7 @@ Tarkoituksena olisi luoda käyttäjälle eräänlainen reseptimuistio: käyttäj
 
 [alustava tietokantakaavio](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/tietokantakaavio.png)
 
-[userstories](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/userstories.txt)
+[userstories](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/userstories.md)
 
 Alustava kirjautuminen: 
 username: kokki, 
