@@ -8,17 +8,16 @@
   <body>
       {% if current_user.is_authenticated %}
       <p>
-        Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+        Logged in with the name {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Log out</a>
       </p>
       {% else %}
-      <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+      <a href="{{ url_for('auth_login') }}">Log in</a>
       {% endif %}
 
     <u1>
       <li><a href="{{ url_for('recipe_index') }}">List recipes</a></li>
       <li><a href="{{ url_for('recipe_form') }}">Add a recipe</a></li>
-      <li><a href="{{ url_for('recipe_remove') }}">Remove a recipe</a></li>
-
+      
     </u1>
 
     {% block body %}

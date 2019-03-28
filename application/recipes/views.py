@@ -32,10 +32,10 @@ def recipe_create():
 
 @app.route("/recipes/delete/", methods=["POST"])
 @login_required
-def recipe_remove():
+def recipe_delete():
     
-    name = Recipes(request.form.get("name"))
-    recipe = Recipes.query.filter_by(name=name).first()
+    dname = request.form.get("delname")
+    recipe = Recipes.query.filter_by(name=dname).first()
     db.session().delete(recipe)
     db.session().commit()
 
@@ -45,10 +45,18 @@ def recipe_remove():
 @login_required
 def recipe_update():
 
-    name = Recipes(request.form.get("name"))
-    old = Recipes.query.filter_by(name=name).first()
-    methd = Recipes(request.form.get("method"))
-    old.method = methd
+    newn = request.form.get("newname")
+
+    oldn = request.form.get("oldname")
+
+    newm = request.form.get("newmethod")
+
+    oldm = request.form.get("oldmethod")
+
+    rec = Recipes.query.filter_by(name=oldn).first()
+
+    rec.name = newn
+    rec.method = newm
     
     db.session().commit()
 
