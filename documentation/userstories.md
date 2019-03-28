@@ -6,4 +6,4 @@ keittokirjaan, josta löydän ne helposti myöhemmin. Voin myös lisätä keitto
 tuotemerkeistä, joista pidän.  Voin myös muokata ja poistaa lisäämiäni reseptejä sekä ainesosia keittokirjasta.  
 
 Tämän hetkisessä Elektronisen keittokirjan toteutuksessa voin käyttäjänä lisätä reseptin nimen tietokantaan ja nähdä kaikkien
-lisäämieni reseptien nimet listattuina. 
+lisäämieni reseptien nimet listattuina. Käyttäjänä voin myös kirjautua sisään, sekä poistaa että muokata lisäämiäni reseptejä. 
