@@ -12,5 +12,9 @@ AINESOSA
 String nimi
 String suositus
 
+KÄYTTÄJÄ
+(pk) if INTEGER
+//
+
 [RESEPTI] 1--* [RESEPTINAINESOSA]
 [AINEISOSA] 1--* [RESEPTINAINESOSA]

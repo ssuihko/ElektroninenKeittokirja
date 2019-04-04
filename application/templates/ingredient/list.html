@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Recipe</th>
+      <th>Ingredients</th>
+      <th>Recommendation</th>
+    </tr>
+    {% for recipe in recipes %}
+    {% for ingredient in ingredient %}
+    <tr>
+      <td>{{ recipes.name }}</td>
+      <td>{{ ingredient.name }}</td>
+      <td>{{ ingredient.recommendation  }}</td>
+      
+      <form method="POST" action="/ingredient/update/">
+        <input type="hidden" value="{{ ingredient.name }}" name="oldname">
+        <input type="hidden" value="{{ ingredient.recommendation }}" name="oldrecommendation">
+        <input type="text" value="{{ ingredient.name }}" name="newname">
+        <input type="text" value="{{ ingredient.recommendation }}" name ="newrecommendation">
+        <input type="submit" value="Update">
+      </form>
+  
+      <form method="POST" action="/ingredient/delete/">
+      <input type="hidden" value="{{ ingredient.name }}" name="delname">
+      <input type="submit" value="Delete">
+    </form>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

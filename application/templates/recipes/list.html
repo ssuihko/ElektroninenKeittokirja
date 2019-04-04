@@ -10,6 +10,7 @@
     <tr>
       <td>{{ recipe.name }}</td>
       <td>{{ recipe.method }}</td>
+
       <form method="POST" action="/recipes/update/">
         <input type="hidden" value="{{ recipe.name }}" name="oldname">
         <input type="hidden" value="{{ recipe.method }}" name="oldmethod">
@@ -18,11 +19,12 @@
         <input type="submit" value="Update">
       </form>
   
-      <form method="POST" action="/recipes/delete/">
+    <form method="POST" action="/recipes/delete/">
       <input type="hidden" value="{{ recipe.name }}" name="delname">
       <input type="submit" value="Delete">
     </form>
-    </tr>
-    {% endfor %}
-  </table>
+
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}

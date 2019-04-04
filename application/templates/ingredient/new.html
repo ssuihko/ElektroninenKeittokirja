@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form methods="POST" action="{{ url_for('ingredient_create') }}">
+  <table>
+    <tr>
+      <td>
+        {{ form.name.label }}
+      </td>
+      <td>
+        {{ form.name }}
+      </td>
+      <td>
+    <u1>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </u1>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.recommendation.label }}
+      </td>
+      <td>
+        {{ form.recommendation }}
+      </td>
+      <td>
+        <u1>
+          {% for error in form.method.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </u1>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <input type="submit" value="Add a new ingredient"/>
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

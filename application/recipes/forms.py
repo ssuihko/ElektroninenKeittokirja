@@ -7,3 +7,6 @@ class RecipeForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+
+
