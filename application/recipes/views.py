@@ -33,7 +33,7 @@ def recipe_create():
 @app.route("/recipes/delete/", methods=["POST"])
 @login_required
 def recipe_delete():
-    
+
     dname = request.form.get("delname")
     recipe = Recipes.query.filter_by(name=dname).first()
     db.session().delete(recipe)

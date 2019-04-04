@@ -3,14 +3,13 @@
 {% block body %}
   <table>
     <tr>
-      <th>Recipe</th>
-      <th>Ingredients</th>
+      <th>Ingredient</th>
       <th>Recommendation</th>
+      <th><a href="{{ url_for('ingredient_form') }}">Ingredients</a></th>
     </tr>
-    {% for recipe in recipes %}
     {% for ingredient in ingredient %}
     <tr>
-      <td>{{ recipes.name }}</td>
+
       <td>{{ ingredient.name }}</td>
       <td>{{ ingredient.recommendation  }}</td>
       
@@ -26,6 +25,7 @@
       <input type="hidden" value="{{ ingredient.name }}" name="delname">
       <input type="submit" value="Delete">
     </form>
+
     </tr>
     {% endfor %}
   </table>
