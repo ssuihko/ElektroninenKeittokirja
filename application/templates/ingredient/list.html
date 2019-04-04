@@ -3,7 +3,7 @@
 {% block body %}
   <table>
     <tr>
-      <th>Ingredient</th>
+      <th>Ingredient </th>
       <th>Recommendation</th>
       <th><a href="{{ url_for('ingredient_form') }}">Add ingredient</a></th>
     </tr>
@@ -11,7 +11,6 @@
     <tr>
 
       <td>{{ ingredient.name }}</td>
-      <td>{{ ingredient.recommendation  }}</td>
       
       <form method="POST" action="/ingredient/update/">
         <input type="hidden" value="{{ ingredient.name }}" name="oldname">

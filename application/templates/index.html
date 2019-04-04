@@ -4,4 +4,19 @@
   <p>
     This is my recipe application : ) 
   </p>
+
+  {% if rec_l is defined %}
+  <p>
+    List of recipes:
+  </p>
+
+  <ul>
+    {% for recipes in rec_li %}
+    <li>
+      {{name}}
+    </li>
+    {% endfor %}
+  </ul>
+
+{% endif %}
 {% endblock %}

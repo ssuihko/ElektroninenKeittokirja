@@ -22,12 +22,13 @@ def ingredient_create():
     if not form.validate():
         return render_template("ingredient/new.html", form=form)
 
-    i = ingredient(form.name.data, form.recommendation.data)
+    ib = ingredient(form.name.data)
+    ib.recommendation = form.recommendation.data
 
-    db.session().add(i)
+    db.session().add(ib)
     db.session().commit()
 
-    return redirect(url_for("recipe_index"))
+    return redirect(url_for("ingredient_list"))
     
 
    

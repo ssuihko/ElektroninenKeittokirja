@@ -1,5 +1,6 @@
 from application import db
 from application.ingredient.models import ingredient
+from sqlalchemy.sql import text
 
 association_table = db.Table('recipeIngredient', 
     db.Column('recipe_id', db.Integer, db.ForeignKey('recipes.id'), nullable=False),
@@ -21,6 +22,16 @@ class Recipes(db.Model):
     def __init__(self, name, method):
         self.name = name
         self.method = method
+
+
+    @staticmethod
+    def list_recipes():
+        stmt = text("SELECT name FROM recipes")
+
+        res = db.engine.execute(stmt)
+
+        for row in res:
+            print(row[0])
 
 
 
