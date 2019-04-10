@@ -30,8 +30,17 @@ class Recipes(db.Model):
 
         res = db.engine.execute(stmt)
 
+        response = []
+
         for row in res:
-            print(row[0])
+            
+            response.append({"name":row[0]})
+
+        return response
+        
+
+
+
 
 
 

@@ -5,15 +5,15 @@
     This is my recipe application : ) 
   </p>
 
-  {% if rec_l is defined %}
+  {% if rec_li is defined %}
   <p>
     List of recipes:
   </p>
 
   <ul>
-    {% for recipes in rec_li %}
+    {% for recipe in rec_li %}
     <li>
-      {{name}}
+      {{recipe.name}}
     </li>
     {% endfor %}
   </ul>

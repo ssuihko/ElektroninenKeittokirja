@@ -1,30 +1,21 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<form method="POST" action="{{ url_for('ingredient_form') }}">
   <table>
     <tr>
-      <th>Ingredient </th>
+      <th>Ingredient</th>
       <th>Recommendation</th>
-      <th><a href="{{ url_for('ingredient_form') }}">Add ingredient</a></th>
     </tr>
     {% for ingredient in ingredient %}
     <tr>
-
       <td>{{ ingredient.name }}</td>
-      
-      <form method="POST" action="/ingredient/update/">
-        <input type="hidden" value="{{ ingredient.name }}" name="oldname">
-        <input type="hidden" value="{{ ingredient.recommendation }}" name="oldrecommendation">
-        <input type="text" value="{{ ingredient.name }}" name="newname">
-        <input type="text" value="{{ ingredient.recommendation }}" name ="newrecommendation">
-        <input type="submit" value="Update">
-      </form>
-  
-      <form method="POST" action="/ingredient/delete/">
-      <input type="hidden" value="{{ ingredient.name }}" name="delname">
-      <input type="submit" value="Delete">
-    </form>
-
+      <td>{{ ingredient.method }}</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Add a new ingredient"/>
+      </td>
     </tr>
     {% endfor %}
   </table>

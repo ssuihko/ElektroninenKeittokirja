@@ -10,8 +10,9 @@
     <tr>
       <td>{{ recipe.name }}</td>
       <td>{{ recipe.method }}</td>
-      <td><a href="{{ url_for('ingredient_list') }}">Add ingredients</a></td>
-
+      <td><a href="{{ url_for('ingredient_list') }}">See ingredients</a></td>
+      <td><a href="{{ url_for('ingredient_form' ) }}">Add an ingredient</a></td>
+      
       <form method="POST" action="/recipes/update/">
         <input type="hidden" value="{{ recipe.name }}" name="oldname">
         <input type="hidden" value="{{ recipe.method }}" name="oldmethod">

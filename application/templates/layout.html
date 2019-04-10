@@ -8,7 +8,7 @@
 
   <body>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-          <a class="navbar-brand" href="#">TodoApplication</a>
+          <a class="navbar-brand" href="#">RecipeApplication</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
           </button>
@@ -26,6 +26,7 @@
                    <a href="{{ url_for('auth_logout') }}">Hello {{ current_user.name }} -- Logout</a>
                    {% else %}
                    <a href="{{ url_for('auth_login') }}">Login</a>
+                   <a href="{{ url_for('auth_register') }}">Register</a>
                    {% endif %}
                 </div>
             </div>

@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from flask import redirect, render_template, request, url_for
 from application.ingredient.models import ingredient
 from application.ingredient.forms import IngredientForm
+from application.recipes.models import Recipes
 
 @app.route("/ingredient", methods=["GET"])
 def ingredient_list():
@@ -22,8 +23,10 @@ def ingredient_create():
     if not form.validate():
         return render_template("ingredient/new.html", form=form)
 
-    ib = ingredient(form.name.data)
-    ib.recommendation = form.recommendation.data
+    ib = ingredient(form.name.data, form.recommendation.data)
+
+    if a is None:
+        ib = ingredient(form.name.data)
 
     db.session().add(ib)
     db.session().commit()
