@@ -12,6 +12,7 @@ def ingredients_all():
     return render_template("recipes/list.html", recipes=Recipes.query.all())
 
 @app.route("/recipes", methods=["GET"])
+@login_required()
 def recipe_index():
     return render_template("recipes/list.html", recipes=current_user.recipes)
 
