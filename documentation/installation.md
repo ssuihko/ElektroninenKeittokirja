@@ -23,6 +23,7 @@ Lisää ensimmäinen käyttäjä
 ```
 $ sqlite3 application/recipes.db
 sqlite> INSERT INTO account (name, username, password, role_id) VALUES('valinnainen', 'valinnainen', 'valinnainen', 2);
+```
 
 role_id = 2 antaa käyttäjälle ADMIN -oikeudet, role_id = 1 tavallisen käyttäjän oikeudet
 
