@@ -20,23 +20,31 @@
     </tr>
     <tr>
       <td>
-        {{ form.recommendation.label }}
+        {{ form.amount.label }}
       </td>
       <td>
-        {{ form.recommendation }}
+        {{ form.amount }}
       </td>
       <td>
         <u1>
-          {% for error in form.recommendation.errors %}
+          {% for error in form.amount.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </u1>
     </tr>
+    {% set recipe_id = 0 %}
+    {% for recipe in recipes %}
+        {% set recipe_id = recipe.id %}
+    {% endfor %}
     <tr>
-      <td colspan="4">
-        <input type="submit" value="Add a new ingredient"/>
+      <td colspan="4" style="width: 20mm">
+        <form method="GET" action="{{ url_for('ingredient_create', recipe_id = recipe.id) }}">
+        <input type="submit" class="btn btn-secondary btn_sm" value="Add a new ingredient"/>
+        </form>
       </td>
     </tr>
+   
   </table>
 </form>
 {% endblock %}
+

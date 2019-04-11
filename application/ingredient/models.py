@@ -1,13 +1,16 @@
 from application import db
-
+from application.recipes import models
 class ingredient(db.Model):
 
     __tablename__ = "ingredient"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(144), nullable=False)
-    recommendation = db.Column(db.String(144), nullable=True)
+    amount = db.Column(db.String(144), nullable=False)
   
-    def __init__(self, name, recommendation):
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id'),
+                           nullable=False)
+
+    def __init__(self, name, amount):
         self.name = name
-        self.recommendation = recommendation
+        self.amount = amount

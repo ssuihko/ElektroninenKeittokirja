@@ -1,21 +1,27 @@
-from application import app, db
-from flask_login import login_required, current_user
+from application import app, db, login_required, login_manager
+from flask_login import current_user
 
 from flask import redirect, render_template, request, url_for
 from application.recipes.models import Recipes
-from application.recipes.forms import RecipeForm
+from application.recipes.forms import RecipeForm, RecipeEditForm
+from application.ingredient.models import ingredient
+
+@app.route("/recipes/all", methods=["GET"])
+@login_required(role="ADMIN")
+def ingredients_all():
+    return render_template("recipes/list.html", recipes=Recipes.query.all())
 
 @app.route("/recipes", methods=["GET"])
 def recipe_index():
-    return render_template("recipes/list.html", recipes = Recipes.query.all())
+    return render_template("recipes/list.html", recipes=current_user.recipes)
 
 @app.route("/recipes/new/")
-@login_required
+@login_required()
 def recipe_form():
     return render_template("recipes/new.html", form = RecipeForm())
 
 @app.route("/recipes/", methods=["POST"])
-@login_required
+@login_required()
 def recipe_create():
     form = RecipeForm(request.form)
 
@@ -30,44 +36,45 @@ def recipe_create():
 
     return redirect(url_for("recipe_index"))
 
-@app.route("/recipes/delete/", methods=["POST"])
-@login_required
-def recipe_delete():
+@app.route("/recipes/<recipes_id>/delete/", methods=["GET"])
+@login_required()
+def recipe_delete(recipes_id):
 
-    dname = request.form.get("delname")
-    recipe = Recipes.query.filter_by(name=dname).first()
-    db.session().delete(recipe)
+    db.session.delete(Recipes.query.get(recipes_id))
     db.session().commit()
 
     return redirect(url_for("recipe_index"))
 
-@app.route("/recipes/update/", methods=["POST"])
-@login_required
-def recipe_update():
+@app.route("/recipes/<recipes_id>/update/", methods=["GET", "POST"])
+@login_required()
+def recipe_update(recipes_id):
 
-    newn = request.form.get("newname")
+    if request.method == "GET":
 
-    oldn = request.form.get("oldname")
+        recipes = Recipes.query.get(recipes_id)
+        form = RecipeEditForm(obj=recipes)
 
-    newm = request.form.get("newmethod")
+        return render_template("recipes/update.html", form=form, recipes_id=recipes_id)
+   
+    form = RecipeEditForm(request.form)
+    recipes = Recipes.query.get(recipes_id)
 
-    oldm = request.form.get("oldmethod")
+    if not form.validate():
+        return render_template("recipes/update.html", form=form, recipes_id=recipes_id)
 
-    rec = Recipes.query.filter_by(name=oldn).first()
+    recipes.name = form.name.data
+    recipes.method = form.method.data
 
-    rec.name = newn
-    rec.method = newm
-    
     db.session().commit()
 
     return redirect(url_for("recipe_index"))
 
- 
-
-
-
-
+@app.route("/recipes/ingredients/", methods=["GET"])
+@login_required()
+def list_ingredients():
     
+    ing_id = ingredient.query.get(id)
+    recipe_id = Recipes.association_table.query.get(ing_id)
 
-
+    return render_template("ingredient/list.html", ingredient=ingredient.query.get(id=ing2))
 

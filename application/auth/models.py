@@ -15,7 +15,10 @@ class User(db.Model):
     password = db.Column(db.String(144), nullable=False)
 
     recipes = db.relationship("Recipes", backref='account', lazy=True)
-  
+    
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
+    role = db.relationship("Role")
+
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
@@ -33,6 +36,16 @@ class User(db.Model):
     def is_authenticated(self):
         return True
 
+class Role(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(5), nullable=False)
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return self.name
 
 
 

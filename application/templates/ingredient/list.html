@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('ingredient_form') }}">
+<form method="POST" action="{{ url_for('list_ingredient') }}">
   <table>
     <tr>
       <th>Ingredient</th>
-      <th>Recommendation</th>
+      <th>Amount</th>
     </tr>
     {% for ingredient in ingredient %}
     <tr>
       <td>{{ ingredient.name }}</td>
-      <td>{{ ingredient.method }}</td>
+      <td>{{ ingredient.amount }}</td>
     </tr>
     <tr>
       <td colspan="2">
