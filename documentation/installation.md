@@ -32,7 +32,7 @@ Käynnistä sovellus komennolla
 ```
 $ python run.py
 ```
-Ja klikkaa osoitetta 
+Ja klikkaa terminaaliin avautuvaa osoitetta 
 http://localhost:5000/
 
 Sovellus toimii nyt paikallisessa verkkoympäristössä
