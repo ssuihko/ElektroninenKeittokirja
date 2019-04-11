@@ -32,10 +32,7 @@
           {% endfor %}
         </u1>
     </tr>
-    {% set recipe_id = 0 %}
-    {% for recipe in recipes %}
-        {% set recipe_id = recipe.id %}
-    {% endfor %}
+   {% for recipe in recipes %} 
     <tr>
       <td colspan="4" style="width: 20mm">
         <form method="GET" action="{{ url_for('ingredient_create', recipe_id = recipe.id) }}">
@@ -43,7 +40,7 @@
         </form>
       </td>
     </tr>
-   
+   {% endfor %}
   </table>
 </form>
 {% endblock %}
