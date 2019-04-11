@@ -1,22 +1,27 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <p>
-    This is my recipe application : ) 
-  </p>
 
-  {% if rec_li is defined %}
-  <p>
-    List of recipes:
-  </p>
+  <h1>Recipe Application</h1>
 
-  <ul>
-    {% for recipe in rec_li %}
-    <li>
-      {{recipe.name}}
-    </li>
-    {% endfor %}
-  </ul>
+  <table class="table" style="width: 60%">
 
+  {% if rec_per_user is defined %}
+  
+  <tr>
+    <td style="width: 10em">
+    Recipes per User
+  </td>
+
+  {% for account in rec_per_user %}
+  {% for count in rec_per_user %}
+  <tr>
+    <td>{{ account.name }}</td>
+    <td>{{ count.recipes }}</td>
+  {% endfor %}
+  {% endfor %}
+  </tr>
+</table>
+  
 {% endif %}
 {% endblock %}

@@ -25,33 +25,19 @@ class Recipes(db.Model):
         self.method = method
 
 
-    @staticmethod
-    def list_recipes():
-        stmt = text("SELECT name FROM recipes")
-
-        res = db.engine.execute(stmt)
-
-        response = []
-
-        for row in res:
-            
-            response.append({"name":row[0]})
-
-        return response
-
     @staticmethod 
-    def find_recipes_with_ingredient(id):
-        stmt = text("SELECT DISTINCT recipes.id, recipes.name "
-                    " FROM recipes, ingredient, recipe_ingredient WHERE ingredient.id = :param "
-                    " AND ingredient.id = recipe_ingredient.ingredient_id "
-                    " AND recipe_ingredient.recipe_id = recipes.id;").params(param=id)
+    def find_users_with_recipes():
+        stmt = text("SELECT account.id, account.name, COUNT(recipes.id) AS recipes FROM account"
+                    " LEFT JOIN recipes ON recipes.account_id = account.id"
+                    " WHERE recipes.account_id = account.id"
+                    " GROUP BY account.id")
 
         res = db.engine.execute(stmt)
 
         response = []
 
         for row in res:
-            response.append({"id": row[0], "name": row[1]})
+            response.append({"id":row[0],"name": row[1], "recipes": row[2]})
 
         return response
 

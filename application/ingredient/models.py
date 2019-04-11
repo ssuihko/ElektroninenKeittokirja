@@ -1,5 +1,6 @@
 from application import db
 from application.recipes import models
+from sqlalchemy.sql import text
 class ingredient(db.Model):
 
     __tablename__ = "ingredient"
@@ -14,3 +15,5 @@ class ingredient(db.Model):
     def __init__(self, name, amount):
         self.name = name
         self.amount = amount
+
+   

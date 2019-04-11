@@ -12,6 +12,7 @@ def ingredients_all():
     return render_template("recipes/list.html", recipes=Recipes.query.all())
 
 @app.route("/recipes", methods=["GET"])
+@login_required()
 def recipe_index():
     return render_template("recipes/list.html", recipes=current_user.recipes)
 
@@ -69,12 +70,4 @@ def recipe_update(recipes_id):
 
     return redirect(url_for("recipe_index"))
 
-@app.route("/recipes/ingredients/", methods=["GET"])
-@login_required()
-def list_ingredients():
-    
-    ing_id = ingredient.query.get(id)
-    recipe_id = Recipes.association_table.query.get(ing_id)
-
-    return render_template("ingredient/list.html", ingredient=ingredient.query.get(id=ing2))
 
