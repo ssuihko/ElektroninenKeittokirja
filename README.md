@@ -12,6 +12,10 @@ Tarkoituksena olisi luoda käyttäjälle eräänlainen reseptimuistio: käyttäj
 
 [userstories](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/userstories.md)
 
+[asennusohje](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/installation.md)
+
+[käyttöohje](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/guide.md)
+
 Alustava kirjautuminen: 
 username: kokki, 
 password: kirja
