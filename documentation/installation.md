@@ -8,10 +8,10 @@ Lataa osoitteesta https://github.com/ssuihko/ElektroninenKeittokirja koneellesi 
 
 Ota Pythonin virtuaaliympäristö käyttöön seuraavilla komennoilla
 
-´´´
+```
 $ python3 -m venv venv
 $ source venv/bin/activate
-´´´
+```
 
 
 
