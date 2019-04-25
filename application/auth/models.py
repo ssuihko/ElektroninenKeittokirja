@@ -14,9 +14,9 @@ class User(db.Model):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
     recipes = db.relationship("Recipes", backref='account', lazy=True)
     
-    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
     role = db.relationship("Role")
 
     def __init__(self, name, username, password):

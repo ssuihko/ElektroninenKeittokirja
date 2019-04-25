@@ -1,5 +1,4 @@
 from flask import Flask
-
 app = Flask(__name__)
 
 from flask_sqlalchemy import SQLAlchemy
@@ -53,7 +52,7 @@ def login_required(role="ANY"):
             return fn(*args, **kwargs)
         return decorated_view
     return wrapper
-
+   
 # application content
 from application import views
 
@@ -68,7 +67,7 @@ from application.auth import views
 
 from application.auth.models import User, Role
 
- #userroles
+#userroles
 from application.auth.models import Role 
 
 role = Role.query.filter_by(name='User').first()
@@ -85,6 +84,7 @@ if not role:
     db.session().add(role)
     db.session().commit()
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
@@ -92,6 +92,7 @@ def load_user(user_id):
 # database creation
 try:
     db.create_all()
+
 except:
     pass
 

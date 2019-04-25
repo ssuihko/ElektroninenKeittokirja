@@ -1,6 +1,7 @@
 from application import db
 from application.recipes import models
 from sqlalchemy.sql import text
+
 class ingredient(db.Model):
 
     __tablename__ = "ingredient"
