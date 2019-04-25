@@ -67,22 +67,6 @@ from application.auth import views
 
 from application.auth.models import User, Role
 
-#userroles
-from application.auth.models import Role 
-
-role = Role.query.filter_by(name='User').first()
-
-if not role:
-    role = Role('User')
-    db.session().add(role)
-    db.session().commit()
-
-role = Role.query.filter_by(name='ADMIN').first()
-
-if not role:
-    role = Role('ADMIN')
-    db.session().add(role)
-    db.session().commit()
 
 
 @login_manager.user_loader
@@ -93,6 +77,24 @@ def load_user(user_id):
 
 try:
     db.create_all()
+
+    #userroles
+    from application.auth.models import Role 
+
+    role = Role.query.filter_by(name='User').first()
+
+    if not role:
+        role = Role('User')
+        db.session().add(role)
+        db.session().commit()
+
+    role = Role.query.filter_by(name='ADMIN').first()
+
+    if not role:
+        role = Role('ADMIN')
+        db.session().add(role)
+        db.session().commit()
+
 
 except:
     pass
