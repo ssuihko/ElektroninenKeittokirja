@@ -2,21 +2,33 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('ingredient_list') }}">
-  <table>
-    <tr>
+<h2>Ingredients</h2>
+<table class="table table-sm table-hover" style="width: 100%">
+  <tr>
+    <thead class="thead-light">
       <th>Ingredient</th>
       <th>Amount</th>
-    </tr>
+      <th></th>
+      <th></th>
+    </thead>
+  </tr>
     {% for ingredient in ingredient %}
     <tr>
-      <td>{{ ingredient.name }}</td>
-      <td>{{ ingredient.amount }}</td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <input type="submit" value="Add a new ingredient"/>
+      <td style="width: 30mm">{{ ingredient.name }}</td>
+      <td style="width: 30mm">{{ ingredient.amount }}</td>
+
+      <td style="width: 10mm">
+      <form method="GET" action="{{ url_for('ingredient_update', ingredient_id = ingredient.id) }}">
+        <input type="submit" class="btn btn-secondary btn-sm" value="edit" />
+      </form>
+    </td>
+    <td style="width: 10mm">
+        <form method="GET" action="{{ url_for('ingredient_delete', ingredient_id = ingredient.id) }}">
+          <input type="submit" class="btn btn-danger btn-sm" value="delete" />
+        </form>
       </td>
     </tr>
     {% endfor %}
   </table>
+</form>
 {% endblock %}

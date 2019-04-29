@@ -15,7 +15,7 @@ def ingredient_list():
 def ingredient_form():
     return render_template("ingredient/new.html", form=IngredientForm())
 
-@app.route("/ingredient/new/", methods=["POST"])
+@app.route("/ingredient/", methods=["GET", "POST"])
 @login_required
 def ingredient_create(recipe_id):
 
@@ -23,16 +23,14 @@ def ingredient_create(recipe_id):
 
     if not form.validate():
         return render_template("ingredient/new.html", form=form)
+    
+    recipe.id = Recipes.query.get(recipe.id)
+    i = ingredient(form.name.data, form.amount.data)
+    
+    i.recipe_id = recipe.id
 
-    ingredient = ingredient(form.name.data, form.amount.data)
-    ingredient.id = form.id.data
-
-    this_recipe = Recipes.query.get(recipe_id)
-   
-    this_recipe.association_table.append(ingredient.id)
-
-    db.session().add(ingredient)
-    db.session().add(this_recipe)
+    db.session().add(i)
+    db.session().add(i.recipe_id)
     db.session().commit()
 
     return redirect(url_for("ingredient_list"))

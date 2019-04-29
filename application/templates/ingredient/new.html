@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form methods="POST" action="{{ url_for('ingredient_create') }}">
+<form methods="POST" action="{{ url_for('ingredient_create', recipes_id=recipes_id) }}">
   <table>
     <tr>
       <td>
@@ -32,15 +32,12 @@
           {% endfor %}
         </u1>
     </tr>
-   {% for recipe in recipes %} 
     <tr>
       <td colspan="4" style="width: 20mm">
-        <form method="GET" action="{{ url_for('ingredient_create', recipe_id = recipe.id) }}">
         <input type="submit" class="btn btn-secondary btn_sm" value="Add a new ingredient"/>
         </form>
       </td>
     </tr>
-   {% endfor %}
   </table>
 </form>
 {% endblock %}
