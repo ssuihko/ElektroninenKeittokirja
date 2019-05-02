@@ -3,17 +3,10 @@ from application.ingredient import models
 from application.auth import models
 from sqlalchemy.sql import text
 
-association_table = db.Table('recipeIngredient', 
-    db.Column('recipe_id', db.Integer, db.ForeignKey('recipes.id'), nullable=False),
-    db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id'), nullable=False)
-)
-
 class Recipes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(130), nullable=False)
     method = db.Column(db.String(400), nullable=False)
-
-    association_table = db.relationship('ingredient', secondary=association_table, backref=db.backref('ingredient', lazy='dynamic'))
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)

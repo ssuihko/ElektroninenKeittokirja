@@ -9,6 +9,7 @@ from application.recipes.models import Recipes
 from application.recipeIngredient.models import recipe_ingredient
 
 @app.route("/ingredient", methods=["GET"])
+@login_required
 def ingredient_all():
     return render_template("ingredient/listall.html", ingredient=ingredient.query.all())
 
@@ -59,7 +60,7 @@ def ingredient_delete(recipes_id, ingredient_id):
     db.session.delete(r)
     db.session().commit()
 
-    return render_template("ingredient/listall.html", ingredient=ingredient.query.all())
+    return render_template("ingredient/listall.html")
 
 
 
