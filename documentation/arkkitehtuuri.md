@@ -40,17 +40,20 @@ CREATE TABLE ingredient (
 	FOREIGN KEY(recipe_id) REFERENCES recipes (id)
 );
 
-CREATE TABLE IF NOT EXISTS "recipeIngredient" (
-	recipe_id INTEGER NOT NULL, 
-	ingredient_id INTEGER NOT NULL, 
-	FOREIGN KEY(recipe_id) REFERENCES recipes (id), 
-	FOREIGN KEY(ingredient_id) REFERENCES ingredient (id)
-);
 
 CREATE TABLE recipe_ingredient (
 	recipe_id INTEGER NOT NULL, 
 	ingredient_id INTEGER NOT NULL, 
 	PRIMARY KEY (recipe_id, ingredient_id), 
+	FOREIGN KEY(recipe_id) REFERENCES recipes (id), 
+	FOREIGN KEY(ingredient_id) REFERENCES ingredient (id)
+);
+
+Herokussa näkyy vielä myös tällä hetkellä käyttämätön taulu recipeIngredient:
+
+CREATE TABLE IF NOT EXISTS "recipeIngredient" (
+	recipe_id INTEGER NOT NULL, 
+	ingredient_id INTEGER NOT NULL, 
 	FOREIGN KEY(recipe_id) REFERENCES recipes (id), 
 	FOREIGN KEY(ingredient_id) REFERENCES ingredient (id)
 );
