@@ -2,7 +2,7 @@
 1. Ruuanlaitosta kiinnostuneena ihmisenä haluan koota mielireseptini helposti jonnekin, josta ne ovat helposti käsillä. Alustalta
 vaadin myös sen, että resepteistä on helppo pitää kirjaa, ja että niiden lisääminen on vaivatonta. 
 
-SQL -kyselyt : INSERT INTO Recipes (name, method) VALUES ('name', 'method');
+               INSERT INTO Recipes (name, method) VALUES ('name', 'method');
 
                SELECT * FROM Recipes;
                
