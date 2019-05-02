@@ -10,7 +10,7 @@ Tarkoituksena olisi luoda käyttäjälle eräänlainen reseptimuistio: käyttäj
 
 [linkki herokuun](https://tsoha-keittokirja.herokuapp.com/ )
 
-[alustava tietokantakaavio](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/tietokantakaav.png)
+[Tietokantakaavio](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/arkkitehtuuri.md)
 
 [userstories](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/userstories.md)
 
