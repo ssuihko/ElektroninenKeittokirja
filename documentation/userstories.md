@@ -3,6 +3,7 @@
 vaadin myös sen, että resepteistä on helppo pitää kirjaa, ja että niiden lisääminen on vaivatonta. 
 
 SQL -kyselyt : INSERT INTO Recipes (name, method) VALUES ('name', 'method');
+
                SELECT * FROM Recipes;
                
 2. Ruoan raaka-aineet ovat minulle tärkeitä, ja haluan pitää myös niistä kirjaa. Elektronisen keittokirjan käyttäjänä voin lisätä omia reseptejäni sovelluksen kautta
