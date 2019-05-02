@@ -18,6 +18,8 @@ Tarkoituksena olisi luoda käyttäjälle eräänlainen reseptimuistio: käyttäj
 
 [käyttöohje](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/guide.md)
 
+[toteuttamatta jääneet ominaisuudet](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/toteuttamatta.md)
+
 Alustava kirjautuminen: 
 username: kokki, 
 password: kirja
