@@ -9,7 +9,6 @@ Sovelluksessa on tällä hetkellä yksi valmis käyttäjätili tavallisen käytt
 |Tunnus|Salasana|Rooli|
 |------|--------|-----|
 |kokki |kirja   |USER |
-|maija |mehilainen|ADMIN|
 
 Sisäänkirjautumislinkki löytyy sivun oikeasta yläkulmasta. Samasta paikasta löytyy myös rekisteröitymislinkki, jolla voidaan luoda uusia käyttäjiä. Uloskirjautumislinkki avautuu samaan paikkaan kuin kirjautumis - ja rekisteröitymislinkit
 
