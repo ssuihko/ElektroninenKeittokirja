@@ -1,6 +1,6 @@
 ## Tietokannan rakenne
 
-<img src="" width="400" height="450">
+<img src="https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/tietokantakaavio.png" width="400" height="450">
 
 ## CREATE TABLE lauseet
 
