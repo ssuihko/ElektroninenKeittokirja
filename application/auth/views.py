@@ -50,7 +50,7 @@ def user_delete(user_id):
     db.session.delete(User.query.get(user_id))
     db.session().commit()
 
-    return render_template("auth/list.html", users.User.query.all())
+    return render_template("auth/list.html", users=User.query.all())
 
 @app.route("/auth/logout")
 def auth_logout():

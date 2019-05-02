@@ -11,11 +11,11 @@
         {{ form.name }}
       </td>
       <td>
-        <u1>
+        <ul>
           {% for error in form.name.errors %}
           <li>{{ error }}</li>
           {% endfor %}
-        </u1>
+        </ul>
       </td>
     </tr>
     <tr>
@@ -26,11 +26,11 @@
         {{ form.method }}
       </td>
       <td>
-        <u1>
+        <ul>
           {% for error in form.method.errors %}
           <li>{{ error }}</li>
           {% endfor %}
-        </u1>
+        </ul>
     </tr>
     <tr>
       <td colspan="4" style="width: 20mm">

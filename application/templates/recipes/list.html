@@ -15,9 +15,18 @@
     <tr>
       <td style="width: 30mm">{{ recipe.name }}</td>
       <td style="width: 150mm">{{ recipe.method }}</td>
-      <td><a href="{{ url_for('ingredient_list') }}">See ingredients</a></td>
-      <td><a href="{{ url_for('ingredient_form' ) }}">Add an ingredient</a></td>
-      
+ 
+      <td style="width: 30mm">
+        <form method="GET" action="{{ url_for('ingredient_list', recipes_id = recipe.id) }}">
+          <input type="submit" class="btn btn-secondary btn-sm" value="See ingredients" />
+        </form>
+      </td>
+      <td style="width: 30mm">
+        <form method="GET" action="{{ url_for('ingredient_form', recipes_id = recipe.id) }}">
+          <input type="submit" class="btn btn-secondary btn-sm" value="Add an ingredient" />
+        </form>
+      </td>
+
       <td style="width: 10mm">
       <form method="GET" action="{{ url_for('recipe_update', recipes_id = recipe.id) }}">
         <input type="submit" class="btn btn-secondary btn-sm" value="edit" />

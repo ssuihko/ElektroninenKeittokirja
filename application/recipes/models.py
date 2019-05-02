@@ -41,21 +41,24 @@ class Recipes(db.Model):
 
         return response
 
-    class recipe_ingredient(db.Model):
-        recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id'),
-        primary_key=True)
-        ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'),
-        primary_key=True)
+    @staticmethod
+    def find_recipes_with_no_ingredients():
+        stmt = text("SELECT recipes.id, recipes.name FROM recipes"
+                    " LEFT JOIN recipe_ingredient ON recipe_ingredient.recipe_id = recipes.id"
+                    " GROUP BY recipes.id"
+                    " HAVING COUNT(recipe_ingredient.ingredient_id) = 0")
 
-        recipe = db.relationship("Recipes", lazy=True)
-        ingredient = db.relationship("ingredient", lazy=True)
+        res = db.engine.execute(stmt)
 
-        def __init__(self, recipe, ingredient):
-            self.recipe_id = recipes.id
-            self.ingredient_id = ingredient.id
+        response = []
 
-        def __repr__(self):
-            return '{} - {}'.format(self.recipe_id, self.ingredient_id)
+        for row in res:
+            response.append({"name": row[1]})
+            
+        return response
+
+
+
 
 
 

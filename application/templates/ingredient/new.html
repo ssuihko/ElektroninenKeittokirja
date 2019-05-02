@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form methods="POST" action="{{ url_for('ingredient_create', recipes_id=recipes_id) }}">
-  <table>
-    <tr>
+<form methods="POST" action="{{ url_for('ingredient_create', recipes_id = recipes_id) }}">
+  <table> 
+   <tr>
       <td>
         {{ form.name.label }}
       </td>
@@ -11,11 +11,11 @@
         {{ form.name }}
       </td>
       <td>
-        <u1>
+        <ul>
           {% for error in form.name.errors %}
           <li>{{ error }}</li>
           {% endfor %}
-        </u1>
+        </ul>
       </td>
     </tr>
     <tr>
@@ -26,11 +26,11 @@
         {{ form.amount }}
       </td>
       <td>
-        <u1>
+        <ul>
           {% for error in form.amount.errors %}
           <li>{{ error }}</li>
           {% endfor %}
-        </u1>
+        </ul>
     </tr>
     <tr>
       <td colspan="4" style="width: 20mm">
