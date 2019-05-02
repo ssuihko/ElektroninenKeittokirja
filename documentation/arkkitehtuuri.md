@@ -9,6 +9,7 @@ CREATE TABLE role (
 	name VARCHAR(5) NOT NULL, 
 	PRIMARY KEY (id)
 );
+
 CREATE TABLE account (
 	id INTEGER NOT NULL, 
 	date_created DATETIME, 
@@ -20,6 +21,7 @@ CREATE TABLE account (
 	PRIMARY KEY (id), 
 	FOREIGN KEY(role_id) REFERENCES role (id)
 );
+
 CREATE TABLE recipes (
 	id INTEGER NOT NULL, 
 	name VARCHAR(130) NOT NULL, 
@@ -28,6 +30,7 @@ CREATE TABLE recipes (
 	PRIMARY KEY (id), 
 	FOREIGN KEY(account_id) REFERENCES account (id)
 );
+
 CREATE TABLE ingredient (
 	id INTEGER NOT NULL, 
 	name VARCHAR(144) NOT NULL, 
@@ -36,12 +39,14 @@ CREATE TABLE ingredient (
 	PRIMARY KEY (id), 
 	FOREIGN KEY(recipe_id) REFERENCES recipes (id)
 );
+
 CREATE TABLE IF NOT EXISTS "recipeIngredient" (
 	recipe_id INTEGER NOT NULL, 
 	ingredient_id INTEGER NOT NULL, 
 	FOREIGN KEY(recipe_id) REFERENCES recipes (id), 
 	FOREIGN KEY(ingredient_id) REFERENCES ingredient (id)
 );
+
 CREATE TABLE recipe_ingredient (
 	recipe_id INTEGER NOT NULL, 
 	ingredient_id INTEGER NOT NULL, 
