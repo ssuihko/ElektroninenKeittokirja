@@ -1,5 +1,6 @@
 from application import app, db
 from flask_login import login_required, current_user
+
 from flask import redirect, render_template, request, url_for, session
 from application.ingredient.models import ingredient
 from application.ingredient.forms import IngredientForm, IngredientEditForm
@@ -9,7 +10,6 @@ from application.recipes.models import Recipes
 from application.recipeIngredient.models import recipe_ingredient
 
 @app.route("/ingredient", methods=["GET"])
-@login_required
 def ingredient_all():
     return render_template("ingredient/listall.html", ingredient=ingredient.query.all())
 
@@ -33,8 +33,6 @@ def ingredient_list(recipes_id):
 @login_required
 def ingredient_create(recipes_id):
 
-    recipe = Recipes.query.get(recipes_id)
-
     form = IngredientForm(request.form)
 
     ingre = ingredient(form.name.data, form.amount.data)
@@ -44,9 +42,8 @@ def ingredient_create(recipes_id):
     db.session().commit()
 
     ri = recipe_ingredient(recipes_id, ingre.id)
-        
-    db.session().add(ri)
 
+    db.session().add(ri)
     db.session().commit()
 
     return render_template("ingredient/list.html", recipes_id=recipes_id, ingredient=ingredient.query.filter_by(recipe_id=recipes_id))
@@ -55,14 +52,42 @@ def ingredient_create(recipes_id):
 @login_required
 def ingredient_delete(recipes_id, ingredient_id):
 
+    session["ingredientid"] = ingredient_id
+    id = session["ingredientid"]
+
     db.session.delete(ingredient.query.get(ingredient_id))
+
     r = recipe_ingredient.query.get((recipes_id, ingredient_id))
     db.session.delete(r)
+    db.session.commit()
+
     db.session().commit()
 
-    return render_template("ingredient/listall.html")
+    return redirect(url_for("ingredient_all"))
 
+@app.route("/ingredient/<ingredient_id>/update", methods=["GET", "POST"])
+@login_required
+def ingredient_update(ingredient_id):
 
+    if request.method == "GET":
+
+        ingredient = ingredient.query.get(ingredient_id)
+        form = IngredientEditForm(obj=ingredient)
+
+        return render_template("ingredient/update.html", form=form, ingredient_id=ingredient_id)
+
+    form = IngredientEditForm(request.form)
+    ingredient = ingredient.query.get(ingredient_id)
+
+    if not form.validate():
+        return render_template("ingredient/update.html", form=form, ingredient_id=ingredient_id)
+
+    ingredient.name = form.name.data
+    ingredient.amount = form.amount.data
+
+    db.session().commit()
+
+    return redirect(url_for("ingredient_all"))
 
 
 

@@ -16,12 +16,6 @@
     <tr>
       <td style="width: 30mm">{{ ingredient.name }}</td>
       <td style="width: 30mm">{{ ingredient.amount }}</td>
-
-    <td style="width: 10mm">
-        <form method="GET" action="{{ url_for('ingredient_delete', recipes_id = ingredient.recipe_id, ingredient_id = ingredient.id) }}">
-          <input type="submit" class="btn btn-danger btn-sm" value="delete" />
-        </form>
-      </td>
     </tr>
     {% endfor %}
   </table>
