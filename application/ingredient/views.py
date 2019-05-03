@@ -57,8 +57,6 @@ def ingredient_delete(recipes_id, ingredient_id):
 
     db.session.delete(ingredient.query.get(ingredient_id))
 
-    db.session.commit()
-
     db.session().commit()
 
     return redirect(url_for("ingredient_all"))
