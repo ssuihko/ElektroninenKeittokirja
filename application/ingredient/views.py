@@ -52,10 +52,11 @@ def ingredient_create(recipes_id):
 @login_required
 def ingredient_delete(recipes_id, ingredient_id):
 
-    db.session.delete(ingredient.query.get(ingredient_id))
     r = recipe_ingredient.query.get((recipes_id, ingredient_id))
     db.session.delete(r)
 
+    db.session.delete(ingredient.query.get(ingredient_id))
+    
     db.session().commit()
 
     return redirect(url_for("ingredient_all"))
