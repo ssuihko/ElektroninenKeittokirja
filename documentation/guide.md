@@ -14,5 +14,16 @@ Sisäänkirjautumislinkki löytyy sivun oikeasta yläkulmasta. Samasta paikasta 
 
 ## Etusivu
 
-Etusivulla näet sivun vasemmassa yläreunassa linkit reseptien listaamiselle ja reseptin lisäämiselle. Etusivulle tulostuu käyttäjien luomien reseptien määrä kaikille käyttäjille, mutta yksittäinen käyttäjä näkee vain ne reseptit, jotka hän on itse lisännyt tietokantaan. 
-Käyttäjä voi lisätä tietokantaan uuden reseptin nimeämällä sen ja kirjoittamalla ylös valmistusohjeen. Käyttäjä voi muokata ja poistaa lisäämiään reseptejä. 
+Etusivulla näet sivun vasemmassa yläreunassa linkit reseptien listaamiselle ja reseptin lisäämiselle sekä ainesosien listaamiselle. Etusivulle tulostuu käyttäjien luomien reseptien määrä kaikille käyttäjille, mutta yksittäinen käyttäjä näkee vain ne reseptit, jotka hän on itse lisännyt tietokantaan. Etusivulle tulostuvat myös ne reseptit, joihin ei vielä ole lisätty ainesosia.
+Käyttäjä voi lisätä tietokantaan uuden reseptin nimeämällä sen ja kirjoittamalla ylös valmistusohjeen. 
+
+## List recipes
+Käyttäjä voi linkistä painamalla nähdä omat reseptinsä tietokannassa. Tauluun kuuluvat myös erilliset napit reseptin ainesosien listaamiselle, lisäämiselle, reseptin poistamiselle sekä reseptin muokkaamiselle. Painaessaan See ingredients nappia listaantuvat kaikki kyseiseen reseptiin kuuluvat ainesosat. Add ingredient -napista käyttäjä voi puolestaan lisätä uuden ainesosan tähän reseptiin. 
+
+## Add recipe
+Käyttäjä voi linkistä painamalla lisätä tietokantatauluun uuden reseptin kirjoittamalla kenttiin reseptin nimen sekä valmistusmetodin. 
+
+## List ingredients
+Linkistä painamalla käyttäjä näkee kaikki tietokantaan lisätyt ainesosat. Täältä löytyvät myös linkit ainesosien poistamiseen tietokannasta. 
+
+
