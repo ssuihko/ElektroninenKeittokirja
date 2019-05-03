@@ -1,4 +1,4 @@
-# ReseptiApplication Käyttöohje
+# RecipeApplication Käyttöohje
 
 Sovellusta voi käyttää herokussa osoitteessa <https://tsoha-keittokirja.herokuapp.com/>, tai paikallisesti osoitteessa <http://127.0.0.1:5000/>
 
