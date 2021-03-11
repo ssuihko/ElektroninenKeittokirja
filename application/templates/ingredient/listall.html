@@ -1,29 +1,47 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<div class="container">
 <form method="POST" action="{{ url_for('ingredient_all') }}">
 <h2>Ingredients</h2>
 <table class="table table-sm table-hover" style="width: 100%">
   <tr>
     <thead class="thead-light">
       <th>Ingredient</th>
-      <th>Amount</th>
-      <th></th>
+      <th>Recipes with this ingredient</th>
       <th></th>
     </thead>
   </tr>
+  {% if ingredient|length < 1 %} <tr>
+  <td colspan="3">There are no ingredients here yet!</td>
+  </tr>
+  {% else %}
     {% for ingredient in ingredient %}
     <tr>
-      <td style="width: 30mm">{{ ingredient.name }}</td>
-      <td style="width: 30mm">{{ ingredient.amount }}</td>
-
-    <td style="width: 10mm">
-        <form method="GET" action="{{ url_for('ingredient_delete', recipes_id = ingredient.recipe_id, ingredient_id = ingredient.id) }}">
+      <td>{{ ingredient.name }}</td>
+      <td>
+        {% for id in included_ingres %}
+        {% if id.id == ingredient.ingredientId %}
+        {{id.count}}
+        {% endif %}
+        {% endfor %}
+      </td>
+      {% if current_user.role_id == 1 %}
+      <td style="width: 10mm">
+        <form method="POST" action="{{ url_for('ingredient_delete', ingredient_id = ingredient.ingredientId) }}">
           <input type="submit" class="btn btn-danger btn-sm" value="delete" />
         </form>
       </td>
+      <td style="width: 20mm">
+        <form method="GET" action="{{ url_for('ingredient_update', ingredient_id = ingredient.ingredientId) }}">
+          <input type="submit" class="btn btn-secondary btn-sm" value="edit" />
+          </form>
+        </td>
+        {% endif %}
     </tr>
     {% endfor %}
+    {% endif %}
   </table>
 </form>
+</div>
 {% endblock %}

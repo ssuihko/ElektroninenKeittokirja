@@ -2,27 +2,35 @@ from application import db
 from application.ingredient import models
 from application.auth import models
 from sqlalchemy.sql import text
+from application.models import Base, recipeingredient
 
-class Recipes(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+class Recipe(Base):
+
+    __tablename__ = "recipe"
+
+    recipeId = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(130), nullable=False)
-    method = db.Column(db.String(400), nullable=False)
+    method = db.Column(db.Text, nullable=False)
+
+
+    #relationships
+    recipeingredient = db.relationship('Ingredient', secondary=recipeingredient,
+        backref=db.backref('recipes', lazy='dynamic'))
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
 
-
-
-    def __init__(self, name, method):
+    def __init__(self, name, method, user):
         self.name = name
         self.method = method
+        self.account_id = user
 
 
     @staticmethod 
     def find_users_with_recipes():
-        stmt = text("SELECT account.id, account.name, COUNT(recipes.id) AS recipes FROM account"
-                    " LEFT JOIN recipes ON recipes.account_id = account.id"
-                    " WHERE recipes.account_id = account.id"
+        stmt = text("SELECT account.id, account.name, COUNT(recipe.recipeId) AS recipe FROM account"
+                    " LEFT JOIN recipe ON recipe.account_id = account.id"
+                    " WHERE recipe.account_id = account.id"
                     " GROUP BY account.id")
 
         res = db.engine.execute(stmt)
@@ -30,16 +38,51 @@ class Recipes(db.Model):
         response = []
 
         for row in res:
-            response.append({"id":row[0],"name": row[1], "recipes": row[2]})
+            response.append({"id":row[0],"name": row[1], "recipe": row[2]})
+
+        return response
+
+    #find_recipe_ingredients
+
+    @staticmethod 
+    def user_count():
+        stmt = text("SELECT COUNT(account.name) FROM account")
+
+        res = db.engine.execute(stmt)
+
+        response = []
+
+        for row in res:
+            response.append({"amount":row[0] })
+
+        return response
+
+    #find_recipe_ingredients
+
+    @staticmethod 
+    def find_recipe_ingredients(idd):
+        stmt = text("SELECT ingredient.ingredientId, ingredient.name FROM ingredient"
+                    " INNER JOIN recipe_ingredient ON recipe_ingredient.ingredientId = ingredient.ingredientId"
+                    " INNER JOIN recipe ON recipe_ingredient.recipeId = recipe.recipeId"
+                    " WHERE recipe.recipeId = :idd").params(idd=idd) 
+
+        res = db.engine.execute(stmt)
+
+        response = []
+
+        for row in res:
+            print('find_recipe_ingredients')
+            print(row)
+            response.append({"id":row[0],"name": row[1]})
 
         return response
 
     @staticmethod
     def find_recipes_with_no_ingredients():
-        stmt = text("SELECT recipes.id, recipes.name FROM recipes"
-                    " LEFT JOIN recipe_ingredient ON recipe_ingredient.recipe_id = recipes.id"
-                    " GROUP BY recipes.id"
-                    " HAVING COUNT(recipe_ingredient.ingredient_id) = 0")
+        stmt = text("SELECT recipe.recipeId, recipe.name FROM recipe"
+                    " LEFT JOIN recipe_ingredient ON recipe_ingredient.recipeId = recipe.recipeId"
+                    " GROUP BY recipe.recipeId"
+                    " HAVING COUNT(recipe_ingredient.ingredientId) = 0")
 
         res = db.engine.execute(stmt)
 

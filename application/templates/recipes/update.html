@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block body %}
 <h1>Edit recipe</h1>
-
+<div class="container">
 <form method="POST" action="{{ url_for('recipe_update', recipes_id=recipes_id) }}">
   <table style="width:100%">
     <tr>
@@ -36,5 +36,5 @@
   </table>
   <input type="submit" class="btn btn-primary" value="OK" />
 </form>
-
+</div>
 {% endblock %}

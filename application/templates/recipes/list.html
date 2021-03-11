@@ -2,42 +2,51 @@
 
 {% block body %}
 <h2>Recipes</h2>
-  <table class="table table-sm table-hover" style="width: 100%">
+<!-- search -->
+<form method="GET" class="form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+<!-- search -->
+<a href="{{ url_for('only_my_recipes') }} ">Show only my recipes</a>
+<a href="{{ url_for('recipe_index') }} ">  Show all recipes</a>
+{% if error %}
+<p class=error><strong>Error:</strong> {{ error }}
+{% endif %}
+  <table class="table table-sm table-hover">
     <tr>
       <thead class="thead-light">
       <th>Recipe</th>
-      <th>Method</th>
       <th></th>
       <th></th>
       </thead>
     </tr>
+    {% if recipes|length < 1 %}
+    <td colspan="3">No recipes yet in the system !</td>
+  </tr>
+  {% else %}
     {% for recipe in recipes %}
     <tr>
       <td style="width: 30mm">{{ recipe.name }}</td>
-      <td style="width: 150mm">{{ recipe.method }}</td>
- 
       <td style="width: 30mm">
-        <form method="GET" action="{{ url_for('ingredient_list', recipes_id = recipe.id) }}">
-          <input type="submit" class="btn btn-secondary btn-sm" value="See ingredients" />
-        </form>
-      </td>
-      <td style="width: 30mm">
-        <form method="GET" action="{{ url_for('ingredient_form', recipes_id = recipe.id) }}">
-          <input type="submit" class="btn btn-secondary btn-sm" value="Add an ingredient" />
-        </form>
-      </td>
-
-      <td style="width: 10mm">
-      <form method="GET" action="{{ url_for('recipe_update', recipes_id = recipe.id) }}">
-        <input type="submit" class="btn btn-secondary btn-sm" value="edit" />
+        <form method="GET" action="{{ url_for('ingredient_list', recipes_id = recipe.recipeId) }}">
+          <input type="submit" class="btn btn-secondary btn-sm" value="Open recipe" />
         </form>
       </td>
       <td style="width: 10mm">
-      <form method="GET" action="{{ url_for('recipe_delete', recipes_id = recipe.id) }}">
+      <form method="GET" action="{{ url_for('recipe_update', recipes_id = recipe.recipeId) }}">
+        <input type="submit" class="btn btn-secondary btn-sm" value="edit name and method" />
+        </form>
+      </td>
+      <td style="width: 10mm">
+      <form method="POST" action="{{ url_for('recipe_delete', recipes_id = recipe.recipeId) }}">
         <input type="submit" class="btn btn-danger btn-sm" value="delete" />
       </form>
       </td>
   </tr>
   {% endfor %}
+  {% endif %}
 </table>
+
+
 {% endblock %}

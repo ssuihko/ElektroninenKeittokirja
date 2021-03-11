@@ -1,23 +1,34 @@
 {% extends "layout.html" %}
-
 {% block body %}
-<form method="POST" action="{{ url_for('ingredient_list', recipes_id=recipes_id) }}">
-<h2>Ingredients</h2>
+<div class="container">
+<form method="POST" action="{{ url_for('ingredient_list', recipes_id=recipe.recipeId) }}">
+<h4>Method</h4>
+<p>{{ recipe.method }}</p>
+<h4>Ingredients</h4>
 <table class="table table-sm table-hover" style="width: 100%">
   <tr>
     <thead class="thead-light">
       <th>Ingredient</th>
-      <th>Amount</th>
-      <th></th>
       <th></th>
     </thead>
   </tr>
+  <a href="{{ url_for('ingredient_form', recipes_id=recipe.recipeId) }} ">Add an ingredient</a>
+  {% if ingredient|length == 0 %} <tr>
+    <td colspan="3">No ingredients yet in the system !</td>
+  </tr>
+  {% else %}
     {% for ingredient in ingredient %}
     <tr>
       <td style="width: 30mm">{{ ingredient.name }}</td>
-      <td style="width: 30mm">{{ ingredient.amount }}</td>
+      <td style="width: 10mm">
+        <form method="POST" action="{{ url_for('ingredient_delete_from_recipe', ingredient_id=ingredient.id, recipe_id = recipe.recipeId) }}">
+          <input type="submit" class="btn btn-danger btn-sm" value="delete" />
+        </form>
+        </td>
     </tr>
     {% endfor %}
+    {% endif %}
   </table>
 </form>
+</div>
 {% endblock %}

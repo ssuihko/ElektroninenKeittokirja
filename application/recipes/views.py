@@ -1,64 +1,117 @@
-from application import app, db, login_required, login_manager
-from flask_login import current_user
-
-from flask import redirect, render_template, request, url_for
-from application.recipes.models import Recipes
+from application import app, db, login_manager
+from flask_login import current_user, login_required
+from flask import redirect, render_template, request, url_for, session, flash
+from sqlalchemy import func
+from application.recipes.models import Recipe
 from application.recipes.forms import RecipeForm, RecipeEditForm
-from application.ingredient.models import ingredient
+from application.ingredient.models import Ingredient
+from application.ingredient.forms import IngredientForm
+from application.models import recipeingredient
+import sys
+import datetime
 
-@app.route("/recipes/all", methods=["GET"])
-@login_required(role="ADMIN")
-def ingredients_all():
-    return render_template("recipes/list.html", recipes=Recipes.query.all())
+# Why is this ingredients all? 
+#@app.route("/recipes/all", methods=["GET"])
+#@login_required(role="ADMIN")
+#def ingredients_all():
+#    return render_template("recipes/list.html", recipes=Recipe.query.all())
 
 @app.route("/recipes", methods=["GET"])
-@login_required()
+@login_required
 def recipe_index():
+    
+    q = request.args.get('q')
+
+    if q:
+        recipes = Recipe.query.filter(Recipe.name.contains(q))
+    else: 
+        recipes = Recipe.query.order_by(func.lower(Recipe.name)).all()
+        
+    return render_template("recipes/list.html", recipes=recipes)
+
+@app.route("/recipes/user/", methods=["GET"])
+@login_required
+def only_my_recipes():
+    holder = current_user.recipes
     return render_template("recipes/list.html", recipes=current_user.recipes)
 
 @app.route("/recipes/new/")
-@login_required()
+@login_required
 def recipe_form():
-    return render_template("recipes/new.html", form = RecipeForm())
+
+    ingredients = Ingredient.query.all()
+    form = RecipeForm()
+    form.ingredients.choices = [(ingredient.ingredientId, ingredient.name) for ingredient in ingredients]
+
+    return render_template("recipes/new.html", form = form)
 
 @app.route("/recipes/", methods=["POST"])
-@login_required()
+@login_required
 def recipe_create():
+
     form = RecipeForm(request.form)
+    ingredients = Ingredient.query.all()
+    form.ingredients.choices = [(ingredient.ingredientId, ingredient.name) for ingredient in ingredients]
+ 
+    r = Recipe(form.name.data, form.method.data, current_user.id)
+
+    ingredient_ids = form.ingredients.data   
 
     if not form.validate():
         return render_template("recipes/new.html", form=form)
 
-    t = Recipes(form.name.data, form.method.data)
-    t.account_id = current_user.id    
-
-    db.session().add(t)
+    
+    db.session().add(r)
     db.session().commit()
+
+    db.session.refresh(r)
+
+    for id in ingredient_ids:
+        i = Ingredient.query.get(id)
+        r.recipeingredient.append(i)
+        db.session().commit()
 
     return redirect(url_for("recipe_index"))
 
-@app.route("/recipes/<recipes_id>/delete/", methods=["GET"])
-@login_required()
+@app.route("/recipes/<recipes_id>/delete/", methods=["POST"])
+@login_required
 def recipe_delete(recipes_id):
 
-    db.session.delete(Recipes.query.get(recipes_id))
+    recipe = Recipe.query.get(recipes_id)
+
+    if recipe not in current_user.recipes:
+        flash('You can not delete recipes which are not yours')
+        return redirect(url_for("recipe_index"))
+
+    reci_ingre = Ingredient.query.join(recipeingredient).join(Recipe).filter(recipeingredient.c.recipeId == recipe.recipeId and recipeingredient.c.ingredientId == Ingredient.ingredientId).all()
+
+    for ingredient in reci_ingre:
+        recipe.recipeingredient.remove(ingredient)
+    db.session().commit()
+
+    db.session.delete(recipe)
     db.session().commit()
 
     return redirect(url_for("recipe_index"))
 
 @app.route("/recipes/<recipes_id>/update/", methods=["GET", "POST"])
-@login_required()
+@login_required
 def recipe_update(recipes_id):
+
+    recipe = Recipe.query.get(recipes_id)
+    if recipe not in current_user.recipes:
+        flash('You can not edit recipes which are not yours')
+        return redirect(url_for("recipe_index"))
 
     if request.method == "GET":
 
-        recipes = Recipes.query.get(recipes_id)
+        recipes = Recipe.query.get(recipes_id)
         form = RecipeEditForm(obj=recipes)
 
         return render_template("recipes/update.html", form=form, recipes_id=recipes_id)
    
     form = RecipeEditForm(request.form)
-    recipes = Recipes.query.get(recipes_id)
+    recipes = Recipe.query.get(recipes_id)
 
     if not form.validate():
         return render_template("recipes/update.html", form=form, recipes_id=recipes_id)

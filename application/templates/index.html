@@ -2,36 +2,11 @@
 
 {% block body %}
 
+  <div>
   <h1>Recipe Application</h1>
 
-  <table class="table" style="width: 60%">
+    <p>Come share recipes with us!</p>
 
-  {% if rec_per_user is defined %}
-  
-  <tr>
-    <td style="width: 10em">
-    Recipes per User
-  </td>
-
-  {% for account in rec_per_user %}
-  <tr>
-    <td>{{ account.name }}</td>
-    <td>{{ account.recipes }}</td>
-  {% endfor %}
-  </tr>
-
-  <tr>
-    <td style="width: 10em">
-      Recipes with no ingredients:
-    </td>
-  </tr>
-
-  {% for recipes in rec_no_ing %}
-<tr>
-  <td>{{ recipes.name }}</td>
-  {% endfor %}
-</tr>
-</table>
-  
-{% endif %}
+  <p>User count: {{ user_count[0].amount }} </p>
+</div>
 {% endblock %}
