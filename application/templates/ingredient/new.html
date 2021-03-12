@@ -3,7 +3,7 @@
 {% block body %}
 <div class="container">
   <!-- If form method is written as 'methods' the form will always use GET to submit -->
-<form method="POST" action="{{ url_for('ingredient_create', recipes_id = recipe.recipeId) }}">
+<form method="POST" action="{{ url_for('ingredient_create', recipes_id = recipe.recipeid) }}">
   <table> 
    <tr>
       <td>

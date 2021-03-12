@@ -12,7 +12,7 @@ class User(Base):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
    
-    role_id = db.Column(db.Integer, db.ForeignKey('role.roleId'), nullable=True)
+    role_id = db.Column(db.Integer, db.ForeignKey('role.roleid'), nullable=True)
     
      #relationships
     recipes = db.relationship("Recipe", backref='account', lazy=True)
@@ -42,7 +42,7 @@ class User(Base):
 
 class Role(Base):
 
-    roleId = db.Column(db.Integer, primary_key=True)
+    roleid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(5), nullable=False)
 
     def __init__(self, name):
@@ -53,8 +53,8 @@ class Role(Base):
 
     @staticmethod
     def whatismyrole(accountId):
-        stmt = text("SELECT name FROM role LEFT JOIN user ON user.role_id = role.roleID"
-                " WHERE user.id = :accountId").params(accountId=current_user.get_id) 
+        stmt = text("SELECT name FROM role LEFT JOIN user ON user.role_id = role.roleid"
+                " WHERE user.id = :accountid").params(accountid=current_user.get_id) 
 
         result = db.engine.execute(stmt)
         ids = []
@@ -63,10 +63,10 @@ class Role(Base):
 
     @staticmethod
     def ingredientWithRecipes():
-        stmt = text("SELECT user., COUNT(recipe_ingredient.recipeId) FROM ingredient"
-                    " LEFT JOIN recipe_ingredient ON ingredient.ingredientId = recipe_ingredient.ingredientId"
-                    " WHERE recipe_ingredient.recipeId IS NOT NULL"
-                    " GROUP BY ingredient.ingredientId;")
+        stmt = text("SELECT user., COUNT(recipe_ingredient.recipeid) FROM ingredient"
+                    " LEFT JOIN recipe_ingredient ON ingredient.ingredientid = recipe_ingredient.ingredientid"
+                    " WHERE recipe_ingredient.recipeid IS NOT NULL"
+                    " GROUP BY ingredient.ingredientid;")
         result = db.engine.execute(stmt)
         ids = []
         for row in result:

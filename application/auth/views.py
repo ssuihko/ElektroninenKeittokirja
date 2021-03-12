@@ -59,7 +59,7 @@ def user_delete(user_id):
         return redirect('auth/list.html', users=User.query.all())
 
     for r in user.recipes:
-        reci_ingre = Ingredient.query.join(recipeingredient).join(Recipe).filter(recipeingredient.c.recipeId == r.recipeId and recipeingredient.c.ingredientId == Ingredient.ingredientId).all()
+        reci_ingre = Ingredient.query.join(recipeingredient).join(Recipe).filter(recipeingredient.c.recipeid == r.recipeid and recipeingredient.c.ingredientid == Ingredient.ingredientid).all()
         for ingredient in reci_ingre:
             r.ingredients.remove(ingredient)
 

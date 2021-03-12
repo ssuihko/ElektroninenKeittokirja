@@ -26,7 +26,7 @@ def recipe_index():
         recipes = Recipe.query.filter(Recipe.name.contains(q))
     else: 
         recipes = Recipe.query.order_by(func.lower(Recipe.name)).all()
-        
+
     return render_template("recipes/list.html", recipes=recipes)
 
 @app.route("/recipes/user/", methods=["GET"])
@@ -41,7 +41,7 @@ def recipe_form():
 
     ingredients = Ingredient.query.all()
     form = RecipeForm()
-    form.ingredients.choices = [(ingredient.ingredientId, ingredient.name) for ingredient in ingredients]
+    form.ingredients.choices = [(ingredient.ingredientid, ingredient.name) for ingredient in ingredients]
 
     return render_template("recipes/new.html", form = form)
 
@@ -51,7 +51,7 @@ def recipe_create():
 
     form = RecipeForm(request.form)
     ingredients = Ingredient.query.all()
-    form.ingredients.choices = [(ingredient.ingredientId, ingredient.name) for ingredient in ingredients]
+    form.ingredients.choices = [(ingredient.ingredientid, ingredient.name) for ingredient in ingredients]
  
     r = Recipe(form.name.data, form.method.data, current_user.id)
 
@@ -83,7 +83,7 @@ def recipe_delete(recipes_id):
         flash('You can not delete recipes which are not yours')
         return redirect(url_for("recipe_index"))
 
-    reci_ingre = Ingredient.query.join(recipeingredient).join(Recipe).filter(recipeingredient.c.recipeId == recipe.recipeId and recipeingredient.c.ingredientId == Ingredient.ingredientId).all()
+    reci_ingre = Ingredient.query.join(recipeingredient).join(Recipe).filter(recipeingredient.c.recipeid == recipe.recipeid and recipeingredient.c.ingredientid == Ingredient.ingredientid).all()
 
     for ingredient in reci_ingre:
         recipe.recipeingredient.remove(ingredient)

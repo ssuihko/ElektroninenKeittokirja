@@ -29,7 +29,7 @@ def ingredient_list(recipes_id):
 
     method = Recipe.query.get(recipes_id).method
 
-    idd = Recipe.query.get(recipes_id).recipeId
+    idd = Recipe.query.get(recipes_id).recipeid
 
     return render_template("ingredient/list.html", recipe=recipe, recipemethod=method, ingredient=Recipe.find_recipe_ingredients(idd))
 
@@ -88,10 +88,10 @@ def ingredient_delete(ingredient_id):
 
     print('päästiin tänne!')
     print(ingre.name)
-    print(ingre.ingredientId)
+    print(ingre.ingredientid)
     print('AAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHH')
  
-    reci_ingre = Recipe.query.join(recipeingredient).join(Ingredient).filter(recipeingredient.c.ingredientId == ingre.ingredientId).all()
+    reci_ingre = Recipe.query.join(recipeingredient).join(Ingredient).filter(recipeingredient.c.ingredientid == ingre.ingredientid).all()
 
     for recipe in reci_ingre:
         print(recipe)
@@ -147,13 +147,13 @@ def ingredient_update(ingredient_id):
         ingredient = Ingredient.query.get(ingredient_id)
         form = IngredientEditForm(obj=ingredient)
 
-        return render_template("ingredient/update.html", form=form, ingredient_id=ingredient.ingredientId)
+        return render_template("ingredient/update.html", form=form, ingredient_id=ingredient.ingredientid)
 
     form = IngredientEditForm(request.form)
     ingredient = Ingredient.query.get(ingredient_id)
 
     if not form.validate():
-        return render_template("ingredient/update.html", form=form, ingredient_id=ingredient.ingredientId)
+        return render_template("ingredient/update.html", form=form, ingredient_id=ingredient.ingredientid)
 
     ingredient.name = form.name.data
 

@@ -8,7 +8,7 @@ class Recipe(Base):
 
     __tablename__ = "recipe"
 
-    recipeId = db.Column(db.Integer, primary_key=True)
+    recipeid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(130), nullable=False)
     method = db.Column(db.Text, nullable=False)
 
@@ -42,10 +42,10 @@ class Recipe(Base):
 
     @staticmethod 
     def find_recipe_ingredients(idd):
-        stmt = text("SELECT ingredient.ingredientId, ingredient.name FROM ingredient"
-                    " INNER JOIN recipe_ingredient ON recipe_ingredient.ingredientId = ingredient.ingredientId"
-                    " INNER JOIN recipe ON recipe_ingredient.recipeId = recipe.recipeId"
-                    " WHERE recipe.recipeId = :idd").params(idd=idd) 
+        stmt = text("SELECT ingredient.ingredientid, ingredient.name FROM ingredient"
+                    " INNER JOIN recipe_ingredient ON recipe_ingredient.ingredientid = ingredient.ingredientid"
+                    " INNER JOIN recipe ON recipe_ingredient.recipeid = recipe.recipeid"
+                    " WHERE recipe.recipeid = :idd").params(idd=idd) 
 
         res = db.engine.execute(stmt)
 
@@ -60,10 +60,10 @@ class Recipe(Base):
 
     @staticmethod
     def find_recipes_with_no_ingredients():
-        stmt = text("SELECT recipe.recipeId, recipe.name FROM recipe"
-                    " LEFT JOIN recipe_ingredient ON recipe_ingredient.recipeId = recipe.recipeId"
-                    " GROUP BY recipe.recipeId"
-                    " HAVING COUNT(recipe_ingredient.ingredientId) = 0")
+        stmt = text("SELECT recipe.recipeid, recipe.name FROM recipe"
+                    " LEFT JOIN recipe_ingredient ON recipe_ingredient.recipeid = recipe.recipeid"
+                    " GROUP BY recipe.recipeid"
+                    " HAVING COUNT(recipe_ingredient.ingredientid) = 0")
 
         res = db.engine.execute(stmt)
 

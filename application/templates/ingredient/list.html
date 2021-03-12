@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="container">
-<form method="POST" action="{{ url_for('ingredient_list', recipes_id=recipe.recipeId) }}">
+<form method="POST" action="{{ url_for('ingredient_list', recipes_id=recipe.recipeid) }}">
 <h4>Method</h4>
 <p>{{ recipe.method }}</p>
 <h4>Ingredients</h4>
@@ -12,7 +12,7 @@
       <th></th>
     </thead>
   </tr>
-  <a href="{{ url_for('ingredient_form', recipes_id=recipe.recipeId) }} ">Add an ingredient</a>
+  <a href="{{ url_for('ingredient_form', recipes_id=recipe.recipeid) }} ">Add an ingredient</a>
   {% if ingredient|length == 0 %} <tr>
     <td colspan="3">No ingredients yet in the system !</td>
   </tr>
@@ -21,7 +21,7 @@
     <tr>
       <td style="width: 30mm">{{ ingredient.name }}</td>
       <td style="width: 10mm">
-        <form method="POST" action="{{ url_for('ingredient_delete_from_recipe', ingredient_id=ingredient.id, recipe_id = recipe.recipeId) }}">
+        <form method="POST" action="{{ url_for('ingredient_delete_from_recipe', ingredient_id=ingredient.id, recipe_id = recipe.recipeid) }}">
           <input type="submit" class="btn btn-danger btn-sm" value="delete" />
         </form>
         </td>

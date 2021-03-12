@@ -9,7 +9,7 @@ class Base(db.Model):
         onupdate = db.func.current_timestamp())
 
 recipeingredient = db.Table('recipe_ingredient',
-                            db.Column('recipeId', db.Integer, 
-                            db.ForeignKey('recipe.recipeId')),
-                            db.Column('ingredientId', db.Integer, 
-                            db.ForeignKey('ingredient.ingredientId')))
+                            db.Column('recipeid', db.Integer, 
+                            db.ForeignKey('recipe.recipeid')),
+                            db.Column('ingredientid', db.Integer, 
+                            db.ForeignKey('ingredient.ingredientid')))

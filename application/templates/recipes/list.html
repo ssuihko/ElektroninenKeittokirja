@@ -29,17 +29,17 @@
     <tr>
       <td style="width: 30mm">{{ recipe.name }}</td>
       <td style="width: 30mm">
-        <form method="GET" action="{{ url_for('ingredient_list', recipes_id = recipe.recipeId) }}">
+        <form method="GET" action="{{ url_for('ingredient_list', recipes_id = recipe.recipeid) }}">
           <input type="submit" class="btn btn-secondary btn-sm" value="Open recipe" />
         </form>
       </td>
       <td style="width: 10mm">
-      <form method="GET" action="{{ url_for('recipe_update', recipes_id = recipe.recipeId) }}">
+      <form method="GET" action="{{ url_for('recipe_update', recipes_id = recipe.recipeid) }}">
         <input type="submit" class="btn btn-secondary btn-sm" value="edit name and method" />
         </form>
       </td>
       <td style="width: 10mm">
-      <form method="POST" action="{{ url_for('recipe_delete', recipes_id = recipe.recipeId) }}">
+      <form method="POST" action="{{ url_for('recipe_delete', recipes_id = recipe.recipeid) }}">
         <input type="submit" class="btn btn-danger btn-sm" value="delete" />
       </form>
       </td>

@@ -7,7 +7,7 @@ class Ingredient(Base):
 
     __tablename__ = "ingredient"
 
-    ingredientId = db.Column(db.Integer, primary_key=True)
+    ingredientid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(144), nullable=False, unique=True)
 
     # relationships
@@ -19,10 +19,10 @@ class Ingredient(Base):
      
     @staticmethod
     def ingredientWithRecipes():
-        stmt = text("SELECT ingredient.ingredientId, COUNT(recipe_ingredient.recipeId) FROM ingredient"
-                    " LEFT JOIN recipe_ingredient ON ingredient.ingredientId = recipe_ingredient.ingredientId"
-                    " WHERE recipe_ingredient.recipeId IS NOT NULL"
-                    " GROUP BY ingredient.ingredientId;")
+        stmt = text("SELECT ingredient.ingredientid, COUNT(recipe_ingredient.recipeid) FROM ingredient"
+                    " LEFT JOIN recipe_ingredient ON ingredient.ingredientid = recipe_ingredient.ingredientid"
+                    " WHERE recipe_ingredient.recipeid IS NOT NULL"
+                    " GROUP BY ingredient.ingredientid;")
         result = db.engine.execute(stmt)
         ids = []
         for row in result:

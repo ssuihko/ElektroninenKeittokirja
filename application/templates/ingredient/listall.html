@@ -21,19 +21,19 @@
       <td>{{ ingredient.name }}</td>
       <td>
         {% for id in included_ingres %}
-        {% if id.id == ingredient.ingredientId %}
+        {% if id.id == ingredient.ingredientid %}
         {{id.count}}
         {% endif %}
         {% endfor %}
       </td>
       {% if current_user.role_id == 1 %}
       <td style="width: 10mm">
-        <form method="POST" action="{{ url_for('ingredient_delete', ingredient_id = ingredient.ingredientId) }}">
+        <form method="POST" action="{{ url_for('ingredient_delete', ingredient_id = ingredient.ingredientid) }}">
           <input type="submit" class="btn btn-danger btn-sm" value="delete" />
         </form>
       </td>
       <td style="width: 20mm">
-        <form method="GET" action="{{ url_for('ingredient_update', ingredient_id = ingredient.ingredientId) }}">
+        <form method="GET" action="{{ url_for('ingredient_update', ingredient_id = ingredient.ingredientid) }}">
           <input type="submit" class="btn btn-secondary btn-sm" value="edit" />
           </form>
         </td>
