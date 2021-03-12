@@ -25,25 +25,6 @@ class Recipe(Base):
         self.method = method
         self.account_id = user
 
-
-    @staticmethod 
-    def find_users_with_recipes():
-        stmt = text("SELECT account.id, account.name, COUNT(recipe.recipeId) AS recipe FROM account"
-                    " LEFT JOIN recipe ON recipe.account_id = account.id"
-                    " WHERE recipe.account_id = account.id"
-                    " GROUP BY account.id")
-
-        res = db.engine.execute(stmt)
-
-        response = []
-
-        for row in res:
-            response.append({"id":row[0],"name": row[1], "recipe": row[2]})
-
-        return response
-
-    #find_recipe_ingredients
-
     @staticmethod 
     def user_count():
         stmt = text("SELECT COUNT(account.name) FROM account")
