@@ -12,6 +12,7 @@ Sovelluksessa on tarkoitus jakaa reseptejä käyttäjien kesken.
 
 ## Linkkejä
 
+CURRENTLY UNDER MAINTENANCE 
 [linkki herokuun](https://tsoha-keittokirja.herokuapp.com/ )
 
 [Tietokantakaavio](https://github.com/ssuihko/ElektroninenKeittokirja/blob/master/documentation/arkkitehtuuri.md)
