@@ -55,8 +55,8 @@ def user_delete(user_id):
 
     # admin can not delete themselves
     if current_user.id == user.id:
-        flash('Admin account can not delete themselves!')
-        return redirect('auth/list.html', users=User.query.all())
+        flash('Admin can not delete themselves!')
+        return render_template('auth/list.html', users=User.query.all())
 
     for r in user.recipes:
         reci_ingre = Ingredient.query.join(recipeingredient).join(Recipe).filter(recipeingredient.c.recipeid == r.recipeid and recipeingredient.c.ingredientid == Ingredient.ingredientid).all()
