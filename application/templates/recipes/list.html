@@ -21,11 +21,11 @@
       <th></th>
       </thead>
     </tr>
-    {% if recipes|length < 1 %}
+    {% if recipes.count() < 1 %}
     <td colspan="3">No recipes yet in the system !</td>
   </tr>
   {% else %}
-    {% for recipe in recipes %}
+    {% for recipe in recipes.all() %}
     <tr>
       <td style="width: 30mm">{{ recipe.name }}</td>
       <td style="width: 30mm">

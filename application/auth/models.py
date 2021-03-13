@@ -15,7 +15,7 @@ class User(Base):
     role_id = db.Column(db.Integer, db.ForeignKey('role.roleid'), nullable=True)
     
      #relationships
-    recipes = db.relationship("Recipe", backref='account', lazy=True)
+    recipes = db.relationship("Recipe", backref='account', lazy='dynamic')
 
     role = db.relationship("Role")
 

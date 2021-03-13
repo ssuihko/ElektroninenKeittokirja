@@ -21,3 +21,7 @@ This problem does not apply to the recipes.
 #### CamelCase and Postgre-SQL
 
 Apparently in Postgres database table row names, as well as method names, are case-insensitive. To avoid reconfigurations, one should try to name table rows using underscores instead. 
+
+#### How to filter a relationship as a query
+
+In order to work with a table relationship through queries, one needs to configure it with lazy='dynamic'

@@ -5,6 +5,7 @@ from sqlalchemy import func
 from application.recipes.models import Recipe
 from application.recipes.forms import RecipeForm, RecipeEditForm
 from application.ingredient.models import Ingredient
+from application.auth.models import User
 from application.ingredient.forms import IngredientForm
 from application.models import recipeingredient
 import sys
@@ -25,15 +26,15 @@ def recipe_index():
     if q:
         recipes = Recipe.query.filter(Recipe.name.contains(q))
     else: 
-        recipes = Recipe.query.order_by(func.lower(Recipe.name)).all()
+        recipes = Recipe.query.order_by(func.lower(Recipe.name))
 
     return render_template("recipes/list.html", recipes=recipes)
 
 @app.route("/recipes/user/", methods=["GET"])
 @login_required
 def only_my_recipes():
-    holder = current_user.recipes
-    return render_template("recipes/list.html", recipes=current_user.recipes)
+    holder = current_user.recipes  
+    return render_template("recipes/list.html", recipes=current_user.recipes.order_by(func.lower(Recipe.name)))
 
 @app.route("/recipes/new/")
 @login_required
