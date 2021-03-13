@@ -20,13 +20,13 @@ Fixed, user can no more add ingredients with the same name to the recipe.
 
 Ingredient -create method does not have form validation, and the ingredient_update method is visible in the application, but not usable.
 
-#### 2021 päivitys
+#### 2021 update
 
 Validation is now in use for the ingredient create -method. Admin can modify ingredients. 
 
 ## Known bugs 2021
 
-User can not delete the first ingredient in both all recipes listing and recipe specific ingredient listing. 
+User can not delete the first ingredient in both all ingredients listing and recipe specific ingredient listing. 
 
 
 
