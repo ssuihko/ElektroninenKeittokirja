@@ -1,33 +1,34 @@
-## Toteuttamatta jääneet ominaisuudet 2019
+## Unimplemented features 2019
 
-### Ingredient create -metodi
+### Ingredient create -method
 
-Yksi selkein puute sovelluksessa on se, etteivät ainesosien nimet ja määrät näy sarakkeissa, vaikka muu informaatio menee tietokantaan. 
+Ingredients and their names are not visible on the ingredient lists, although the information gets uploaded to the database. 
+
+#### 2021 update
+
+Fixed, every user can see the name of the ingredient and the usage count of the ingredient on the list all ingredients page. Only admin can modify and delete ingredients.
+
+### Normalization
+
+The user can add multiple ingredients to the ingredients table with the same name.
+
+#### 2021 update
+
+Fixed, user can no more add ingredients with the same name to the recipe.
+
+### ingredient form validate and ingredient update 
+
+Ingredient -create method does not have form validation, and the ingredient_update method is visible in the application, but not usable.
 
 #### 2021 päivitys
 
-Virhe korjattu, jokainen käyttäjä näkee ainesosien nimet, sekä sen, kuinka monessa reseptissä ainesosa on käytössä. Vain admin voi poistaa tai muokata ainesosia. 
+Validation is now in use for the ingredient create -method. Admin can modify ingredients. 
 
-### normalisointi 
+## Known bugs 2021
 
-Myös tietokannan normalisoinnissa on puutteita ingredients -taulun suhteen. Ingrediet -taulussa voi tällä hetkellä käytännössä olla useita samannimisiä ja samanmääräisiä ainesosia.
-
-#### 2021 päivitys
-
-Korjattu, samannimisiä ainesosia ei voi enää lisätä. 
-
-### ingredient form validate ja ingredient update 
-
-Tällä hetkellä ingredient -create metodissa ei ole form validate -ominaisuutta. Sovelluksen koodissa on nähtävillä myös ingredient_update metodi, joka ei ole sovelluksessa käytössä.
-
-#### 2021 päivitys
-
-validointi käytössä.
+User can not delete the first ingredient in both all recipes listing and recipe specific ingredient listing. 
 
 
-## Tiedetyt bugit 2021
-
-Käyttäjä ei voi poistaa ainesosalistasta ensimmäistä ainesosaa. Bugi ilmenee sekä reseptikohtaisessa ainesosalistauksessa että kaikkien ainesosien listauksessa.
 
 
 

@@ -1,29 +1,41 @@
-# RecipeApplication Käyttöohje
+# RecipeApplication Guide
 
-Sovellusta voi käyttää herokussa osoitteessa <https://tsoha-keittokirja.herokuapp.com/>, tai paikallisesti osoitteessa <http://127.0.0.1:5000/>
+The application is available on heroku on the address <https://tsoha-keittokirja.herokuapp.com/>, or locally on the address <http://127.0.0.1:5000/>
 
-## Kirjautuminen ja Rekisteröityminen
+## Login and register
 
-Sovelluksessa on tällä hetkellä yksi valmis käyttäjätili tavallisen käyttäjän oikeuksilla
+At the moment there are 2 default accounts on the application
 
-|Tunnus|Salasana|Rooli|
-|------|--------|-----|
-|kokki |kirja   |USER |
+|Username|Password|Role |
+|--------|--------|-----|
+|kokki   |kirja   |admin|
+|kakku   |leipuri |user |
 
-Sisäänkirjautumislinkki löytyy sivun oikeasta yläkulmasta. Samasta paikasta löytyy myös rekisteröitymislinkki, jolla voidaan luoda uusia käyttäjiä. Uloskirjautumislinkki avautuu samaan paikkaan kuin kirjautumis - ja rekisteröitymislinkit
+Click the login button on the front page to login, or the register button to create a new account. 
 
-## Etusivu
+### Functionalities
+#### Front page
 
-Etusivulla näet sivun vasemmassa yläreunassa linkit reseptien listaamiselle ja reseptin lisäämiselle sekä ainesosien listaamiselle. Etusivulle tulostuu käyttäjien luomien reseptien määrä kaikille käyttäjille, mutta yksittäinen käyttäjä näkee vain ne reseptit, jotka hän on itse lisännyt tietokantaan. Etusivulle tulostuvat myös ne reseptit, joihin ei vielä ole lisätty ainesosia.
-Käyttäjä voi lisätä tietokantaan uuden reseptin nimeämällä sen ja kirjoittamalla ylös valmistusohjeen. 
+The front page shows the current user count of the application.  
+On the front page there are also links on the navigation bar which can be accessed only by an authenticated user: List Recipes, Add a Recipe and All Ingredients. 
 
-## List recipes
-Käyttäjä voi linkistä painamalla nähdä omat reseptinsä tietokannassa. Tauluun kuuluvat myös erilliset napit reseptin ainesosien listaamiselle, lisäämiselle, reseptin poistamiselle sekä reseptin muokkaamiselle. Painaessaan See ingredients nappia listaantuvat kaikki kyseiseen reseptiin kuuluvat ainesosat. Add ingredient -napista käyttäjä voi puolestaan lisätä uuden ainesosan tähän reseptiin. 
+#### List recipes
 
-## Add recipe
-Käyttäjä voi linkistä painamalla lisätä tietokantatauluun uuden reseptin kirjoittamalla kenttiin reseptin nimen sekä valmistusmetodin. 
+By clicking the List Recipes link the user can see all the recipes on on the database. The user can modify and delete their own recipes and search recipes by name. The user can see the full description of the recipe by pressing the Open Recipe button. The user can add ingredients to the recipe by clicking the Add an ingredient button on the Recipes description page. 
 
-## List ingredients
-Linkistä painamalla käyttäjä näkee kaikki tietokantaan lisätyt ainesosat. Täältä löytyvät myös linkit ainesosien poistamiseen tietokannasta. 
+#### Add recipe
 
+User can add a recipe to the database by clicking the Add a Recipe button on the navigation bar. To select multiple ingredients to the recipe hold the shift button down while clicking. 
+
+#### List ingredients
+
+By clicking the link List ingredients the user can see all the ingredients in the database, the popularity of the ingredient by the usage count. 
+
+### Admin specific functionalities
+
+#### List ingredients
+Only admin can delete and modify ingredients.
+
+#### User List
+Only admin can see the All Users link on the navigation bar and delete users. The user's recipes will be deleted from the database upon the deletion of their account. 
 

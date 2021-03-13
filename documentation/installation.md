@@ -1,39 +1,39 @@
-# Sovelluksen asentaminen 
+# Installation guide
 
-Ohjeet on kirjoitettu Linux -järjestelmälle. Koneessa on oltava asennettuna python ja sqlite3
+This guide is written for the Linux environment. Please make sure that python and sqlite3 are installed in your system.
 
-## Asentaminen
+## Installation
 
-Lataa osoitteesta https://github.com/ssuihko/ElektroninenKeittokirja koneellesi zip -tiedosto ja pura se. 
+Download the github zip file from the address https://github.com/ssuihko/ElektroninenKeittokirja to your computer and unzip it. 
 
-Ota Pythonin virtuaaliympäristö käyttöön seuraavilla komennoilla
+Use the python virtual environment with the commands below:
 
 ```
 $ python -m venv venv
 $ source venv/bin/activate
 ```
-Asenna requirements.txt:ssä lukevat riippuvuudet
+Install the requirements.txt requirements:
 
 ```
 $ pip install -r requirements.txt
 ```
 
-Lisää ensimmäinen käyttäjä
+If the default accounts are not transferred in the database, add an admin account from terminal with the commands below:
 
 ```
 $ sqlite3 application/recipes.db
-sqlite> INSERT INTO account (name, username, password, role_id) VALUES('valinnainen', 'valinnainen', 'valinnainen', 2);
+sqlite> INSERT INTO account (name, username, password, role_id) VALUES('valinnainen', 'valinnainen', 'valinnainen', 1);
 ```
 
-role_id = 2 antaa käyttäjälle ADMIN -oikeudet, role_id = 1 tavallisen käyttäjän oikeudet
+role_id = 1 gives ADMIN -privileges, role_id = 2 the priviledges of a normal user
 
-Käynnistä sovellus komennolla
+Launch the application with the command
 
 ```
 $ python run.py
 ```
-Ja klikkaa terminaaliin avautuvaa osoitetta 
+And open the address printed on the terminal:
 http://localhost:5000/
 
-Sovellus toimii nyt paikallisessa verkkoympäristössä
+The application should now work locally.
 

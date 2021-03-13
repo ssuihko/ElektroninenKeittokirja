@@ -1,20 +1,25 @@
-RESEPTI
+RECIPE
 (pk) id INTEGER
-String nimi
-String ohje 
+String name
+String method 
 
-RESEPTINAINESOSA
-(fk) resepti: Resepti
-(fk) aineosa: Aineosa
+RECIPE_INGREDIENT
+(fk) recipe: RECIPE
+(fk) ingredient: INGREDIENT
 
-AINESOSA
+INGREDIENT
 (pk) id INTEGER
-String nimi
-String suositus
+String name
 
-KÄYTTÄJÄ
-(pk) if INTEGER
+USER
+(pk) id INTEGER
+(fk) recipes: RECIPE
 //
 
-[RESEPTI] 1--* [RESEPTINAINESOSA]
-[AINEISOSA] 1--* [RESEPTINAINESOSA]
+ROLE
+(pk) roleid
+String name
+
+[RECIPE] 1--* [RECIPE_INGREDIENT]
+[INGREDIENT] 1--* [RECIPE_INGREDIENT]
+[USER] 1--* [RECIPE]
