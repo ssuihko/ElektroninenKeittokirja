@@ -18,7 +18,7 @@ Install the requirements.txt requirements:
 $ pip install -r requirements.txt
 ```
 
-If the default accounts are not transferred in the database, add an admin account from terminal with the commands below:
+Add an admin account from terminal with the commands below:
 
 ```
 $ sqlite3 application/recipes.db

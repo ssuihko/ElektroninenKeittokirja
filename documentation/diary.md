@@ -6,7 +6,7 @@
 
 #### ingredients/new.html sends 'GET' instead of 'POST'
 
-If form method is written as 'methods' the form will always use GET to submit.
+If form method is written as 'methods' in the html file, the form will always use GET to submit.
 
 #### CamelCase and Postgre-SQL
 
